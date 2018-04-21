@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/functions.js"></script>
+    <title>Medical Advice</title>
 </head>
 <body>
-    Start body!
+        <header>
+            Medical Advice
+        </header>
+
+        <div id="activare_search">
+            <div id="button_container">
+
+                <button type="button" onclick="LoadDD()" id="buton_activare">Apasa ca sa incepi</button>
+
+            </div>
+        </div>
+
+        <div class="search">
+            <div class="continut_search">
+
+                <div class="continut_dd">
+                    <button id="buton_dd" style="border-bottom: solid black" onclick="afiseaza_lista()">Simptome (<span id="nr_simptome">0</span>) ↓↑</button>
+                    <div id="lista_dd" style="display: none;">
+                        <input type="search" oninput="cauta()" placeholder="Cauta simptoma" id="cautare_simptoma"/>
+                        <div id="elemente_lista">
+
+                        </div>
+                    </div>
+                </div>
+
+                <button id="buton_cautare" onclick="cauta()">Afla boala</button>
+
+            </div>
+        </div>
+
+        <div class="content">
+
+        </div>
 </body>
 </html>

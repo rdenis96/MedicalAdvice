@@ -2,13 +2,13 @@ package boot.model;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "Symptoms")
+//@Entity
+//@Table(name = "Symptoms")
 public class Symptom {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "ID")
+    //@Id
+  //  @GeneratedValue
+   // @Column(name = "ID")
     private int id;
     @Column(name = "NAME")
     private String name;
@@ -22,6 +22,10 @@ public class Symptom {
     }
 
     public void setName(String name) {
+        this.name = name;
+    }
+
+    public Symptom(String name) {
         this.name = name;
     }
 }
