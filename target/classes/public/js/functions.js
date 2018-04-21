@@ -1,11 +1,46 @@
 
-function afiseaza_lista(){
+var xMLHttpRequest = new XMLHttpRequest();
+xMLHttpRequest.open("GET","getSymptomsList",true);
+xMLHttpRequest.onreadystatechange = loadData;
+xMLHttpRequest.send();
 
-    var buton=document.getElementById('buton_dd');
-    if(buton.style.getPropertyValue('border-bottom')==='medium none white')
-        buton.setAttribute('style', 'border-bottom: solid black');
-    else
-        buton.setAttribute('style', 'border-bottom: white');
+var count;
+var timer;
+
+var array_check=[];
+
+$.ajax({
+    type: "POST",
+    url: "/selectedCheckboxes",
+    data: {
+        "selCheck": array_check
+    },
+    dataType: "json"
+});
+
+function fct(){
+
+    var butoane_bifate=document.querySelectorAll('input[type="checkbox"]:checked');
+
+    for (var i=0;i<butoane_bifate.length;i++)
+        array_check.push(butoane_bifate[i].value);
+
+}
+
+function timerupdate() {
+    count = 5;
+    timer = setInterval(function () {
+        document.getElementById("countdown").innerText = count;
+        count--;
+        if (count < 0) {
+            clearInterval(timer);
+            fct();
+            document.getElementById("countdown").innerText = "/";
+        }
+    }, 1000);
+}
+
+function afiseaza_lista(){
 
     var lista=document.getElementById('lista_dd');
     if(lista.style.getPropertyValue('display')==='none')
@@ -35,18 +70,8 @@ function aduna() {
     var butoane_bifate=document.querySelectorAll('input[type="checkbox"]:checked').length;
     document.getElementById('nr_simptome').innerHTML=butoane_bifate;
 
-}
-
-
-var xMLHttpRequest = new XMLHttpRequest();
-
-function LoadDD(){
-
-    document.getElementById('activare_search').setAttribute('style', 'display: none');
-
-    xMLHttpRequest.open("GET","getSymptomsList",true);
-    xMLHttpRequest.onreadystatechange = loadData;
-    xMLHttpRequest.send();
+    clearInterval(timer);
+    timerupdate();
 
 }
 
@@ -54,7 +79,6 @@ function loadData() {
 
     if(xMLHttpRequest.readyState==4 && xMLHttpRequest.status==200){
         var JSONList=eval('('+xMLHttpRequest.responseText+')');
-        //alert(JSONList);
         var DDList = document.getElementById('elemente_lista');
         DDList.innerHTML='';
 
@@ -66,7 +90,8 @@ function loadData() {
 
             inpSimpt.setAttribute('type','checkbox');
             inpSimpt.setAttribute('onchange','aduna()');
-            inpSimpt.setAttribute('id',JSONList[i].name);
+            inpSimpt.setAttribute('value',JSONList[i].name);
+            inpSimpt.setAttribute('name',"chackbox_name");
 
             labSimpt.innerHTML = JSONList[i].name;
 
@@ -80,4 +105,3 @@ function loadData() {
     }
 
 }
-

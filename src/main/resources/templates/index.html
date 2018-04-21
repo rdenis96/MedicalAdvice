@@ -3,6 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/functions.js"></script>
     <title>Medical Advice</title>
@@ -12,34 +13,29 @@
             Medical Advice
         </header>
 
-        <div id="activare_search">
-            <div id="button_container">
+        <aside>
 
-                <button type="button" onclick="LoadDD()" id="buton_activare">Apasa ca sa incepi</button>
+                <div class="continut_search">
 
-            </div>
-        </div>
+                    <div class="continut_dd">
+                        <button id="buton_dd" onclick="afiseaza_lista()"><span id="nr_simptome">0</span> - Simptome ↓↑ (<span id="countdown">/</span>)</button>
+                        <div id="lista_dd" style="display: none;">
+                            <input type="search" oninput="cauta()" placeholder="Cauta simptoma" id="cautare_simptoma"/>
+                            <div id="elemente_lista">
 
-        <div class="search">
-            <div class="continut_search">
-
-                <div class="continut_dd">
-                    <button id="buton_dd" style="border-bottom: solid black" onclick="afiseaza_lista()">Simptome (<span id="nr_simptome">0</span>) ↓↑</button>
-                    <div id="lista_dd" style="display: none;">
-                        <input type="search" oninput="cauta()" placeholder="Cauta simptoma" id="cautare_simptoma"/>
-                        <div id="elemente_lista">
-
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
-                <button id="buton_cautare" onclick="cauta()">Afla boala</button>
+        </aside>
+
+
+        <div id="content">
+            <div id="content_holder">
 
             </div>
-        </div>
-
-        <div class="content">
-
         </div>
 </body>
 </html>

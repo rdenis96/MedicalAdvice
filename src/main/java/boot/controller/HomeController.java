@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import boot.model.Symptom;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -65,4 +66,13 @@ public class HomeController {
         System.out.println(new Gson().toJson(symptoms));
         return new Gson().toJson(symptoms);
     }
+
+    @RequestMapping(value = "selectedCheckboxes", method = RequestMethod.POST)
+    public void getSelectedCheckboxes(@ModelAttribute("selCheck") String selectedValues){
+
+        //for(String str : selectedValues)
+            System.out.println(selectedValues);
+
+    }
+
 }
