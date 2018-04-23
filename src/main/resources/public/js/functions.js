@@ -9,14 +9,7 @@ var timer;
 
 var array_check=[];
 
-$.ajax({
-    type: "POST",
-    url: "/selectedCheckboxes",
-    data: {
-        "selCheck": array_check
-    },
-    dataType: "json"
-});
+
 
 function fct(){
 
@@ -36,6 +29,13 @@ function timerupdate() {
             clearInterval(timer);
             fct();
             document.getElementById("countdown").innerText = "/";
+            $.ajax({
+                type: "POST",
+                url: "/selectedCheckboxes",
+                data: {
+                    selCheck : array_check
+                }
+            });
         }
     }, 1000);
 }

@@ -3,14 +3,12 @@ package boot.controller;
 import com.google.gson.Gson;
 
 import boot.model.Symptom;
+import com.google.gson.JsonArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +18,6 @@ public class HomeController {
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String loadIndex(Model model) {
 
-        //model.addAttribute("simptome",symptoms);
         return "index";
     }
 
@@ -67,11 +64,11 @@ public class HomeController {
         return new Gson().toJson(symptoms);
     }
 
-    @RequestMapping(value = "selectedCheckboxes", method = RequestMethod.POST)
-    public void getSelectedCheckboxes(@ModelAttribute("selCheck") String selectedValues){
-
-        //for(String str : selectedValues)
-            System.out.println(selectedValues);
+    @RequestMapping(value = "selectedCheckboxes")
+    public void getSelectedCheckboxes(@RequestParam(value = "selCheck[]") List<String> selectedValues){
+        System.out.println("VALORILE PARSATE:");
+        for(String str : selectedValues)
+            System.out.println("VALOARE: " + str);
 
     }
 

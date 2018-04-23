@@ -1,6 +1,6 @@
 package boot.model;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 
 //@Entity
 //@Table(name = "Symptoms")
@@ -10,7 +10,7 @@ public class Symptom {
   //  @GeneratedValue
    // @Column(name = "ID")
     private int id;
-    @Column(name = "NAME")
+    //@Column(name = "NAME")
     private String name;
 
     public int getId() {
