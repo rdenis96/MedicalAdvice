@@ -21,6 +21,7 @@ header{
 
 aside{
     float: left;
+    position: fixed;
     margin-top: 85px;
     width: 250px;
 }
@@ -52,7 +53,7 @@ aside{
 
 #elemente_lista{
     padding-left: 5px;
-    max-height: 300px;
+    max-height: 333px;
     overflow: auto;
     word-wrap: break-word;
 }
