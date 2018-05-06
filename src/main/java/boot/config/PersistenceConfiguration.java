@@ -1,5 +1,6 @@
 package boot.config;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.flyway.FlywayDataSource;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -34,6 +35,13 @@ public class PersistenceConfiguration extends WebMvcConfigurerAdapter {
     @ConfigurationProperties(prefix="spring.datasource")
     @Primary
     public DataSource dataSource(){
+        return DataSourceBuilder.create().build();
+    }
+
+    @Bean
+    @ConfigurationProperties(prefix="datasource.flyway")
+    @FlywayDataSource
+    public DataSource flywayDataSource(){
         return DataSourceBuilder.create().build();
     }
 

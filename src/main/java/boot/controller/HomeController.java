@@ -1,23 +1,26 @@
 package boot.controller;
 
+import boot.model.DiseaseSymptom;
+import boot.service.DiseaseSymptomService;
 import com.google.gson.Gson;
 
-import boot.model.Symptom;
-import com.google.gson.JsonArray;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("home")
 public class HomeController {
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    public String loadIndex(Model model) {
+    @Autowired
+    DiseaseSymptomService diseaseSymptomService;
 
+    @RequestMapping(value = "index",method = RequestMethod.GET)
+    public String loadIndex() {
         return "index";
     }
 
@@ -25,40 +28,7 @@ public class HomeController {
     @ResponseBody
     public String getSymptomsList()
     {
-        List<Symptom> symptoms = new ArrayList<>();
-        symptoms.add(new Symptom("Tuse"));
-        symptoms.add(new Symptom("Febra"));
-        symptoms.add(new Symptom("Diaree"));
-        symptoms.add(new Symptom("Tuse"));
-        symptoms.add(new Symptom("Febra"));
-        symptoms.add(new Symptom("Diaree"));
-        symptoms.add(new Symptom("Tuse"));
-        symptoms.add(new Symptom("Febra"));
-        symptoms.add(new Symptom("Diaree"));
-        symptoms.add(new Symptom("Tuse"));
-        symptoms.add(new Symptom("Febra"));
-        symptoms.add(new Symptom("Diaree"));
-        symptoms.add(new Symptom("Tuse"));
-        symptoms.add(new Symptom("Febra"));
-        symptoms.add(new Symptom("Diaree"));
-        symptoms.add(new Symptom("Tuse"));
-        symptoms.add(new Symptom("Febra"));
-        symptoms.add(new Symptom("Diaree"));
-        symptoms.add(new Symptom("Tuse"));
-        symptoms.add(new Symptom("Febra"));
-        symptoms.add(new Symptom("Diaree"));
-        symptoms.add(new Symptom("Tuse"));
-        symptoms.add(new Symptom("Febra"));
-        symptoms.add(new Symptom("Diaree"));
-        symptoms.add(new Symptom("Tuse"));
-        symptoms.add(new Symptom("Febra"));
-        symptoms.add(new Symptom("Diaree"));
-        symptoms.add(new Symptom("Tuse"));
-        symptoms.add(new Symptom("Febra"));
-        symptoms.add(new Symptom("Diaree"));
-        symptoms.add(new Symptom("Tuse"));
-        symptoms.add(new Symptom("Febra"));
-        symptoms.add(new Symptom("Diaree"));
+        List<DiseaseSymptom> symptoms = diseaseSymptomService.getAll();
 
         System.out.println(new Gson().toJson(symptoms));
         return new Gson().toJson(symptoms);

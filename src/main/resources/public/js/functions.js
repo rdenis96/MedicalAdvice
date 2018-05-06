@@ -90,10 +90,10 @@ function loadData() {
 
             inpSimpt.setAttribute('type','checkbox');
             inpSimpt.setAttribute('onchange','aduna()');
-            inpSimpt.setAttribute('value',JSONList[i].name);
+            inpSimpt.setAttribute('value',JSONList[i].symptom);
             inpSimpt.setAttribute('name',"chackbox_name");
 
-            labSimpt.innerHTML = JSONList[i].name;
+            labSimpt.innerHTML = JSONList[i].symptom;
 
             divSimpt.appendChild(inpSimpt);
             divSimpt.appendChild(labSimpt);
