@@ -10,7 +10,6 @@ var timer;
 var array_check=[];
 
 
-
 function fct(){
 
     var butoane_bifate=document.querySelectorAll('input[type="checkbox"]:checked');
@@ -39,6 +38,7 @@ function timerupdate() {
         }
     }, 1000);
 }
+
 
 function afiseaza_lista(){
 
@@ -75,6 +75,7 @@ function aduna() {
 
 }
 
+
 function loadData() {
 
     if(xMLHttpRequest.readyState==4 && xMLHttpRequest.status==200){
@@ -104,4 +105,9 @@ function loadData() {
 
     }
 
+}
+
+
+function logOut(){
+    alert("logout");
 }

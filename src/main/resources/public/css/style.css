@@ -19,12 +19,14 @@ header{
     color: lightblue;
 }
 
+
 aside{
     float: left;
     position: fixed;
     margin-top: 85px;
     width: 250px;
 }
+
 
 #buton_dd{
     background-color: #333;
@@ -63,6 +65,19 @@ aside{
     display: block;
     color: lightblue;
 }
+
+
+#logout_button{
+    background-color: #ff8990;
+    border: none;
+    cursor: pointer;
+    margin-top:10px;
+
+    height:40px;
+    width: 180px;
+    font-size:1.2em;
+}
+
 
 #content{
     z-index: -1;
