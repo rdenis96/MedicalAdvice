@@ -1,17 +1,4 @@
 
-function redirectLogin(){
-    window.location = "home/index";
-    var name = "MyName is";
-    $.ajax({
-        type: "POST",
-        url: "loginValidation",
-        data: {
-            "myName": name
-        }
-    });
-}
-
-
 function activate_signUp(){
     document.getElementById("signup_input").setAttribute('style', 'display: inline-block');
     document.getElementById("login_input").setAttribute('style', 'display: none');
@@ -25,28 +12,44 @@ function activate_logIn(){
 }
 
 
+//APELUL METODELOR ASTORA SUPRASCRIU ATRIBUTELE "REQUIERD" DE LA INPUT SI NU MAI AU LOC VALIDARILE
 function signUp(){
+
     $.ajax({
         type: "POST",
-        url: "validareSignup",
+        url: "registerValidation",
         data: {
             "username": document.getElementById("username_signup").value,
             "password": document.getElementById("password_signup").value,
             "email": document.getElementById("email_signup").value
         }
     });
+
+    window.location = "home/index";
+
 }
 
 function logIn(){
 
-    //windows.location="home";
+    var t=document.getElementById("username_login").value;
+    alert(t);
 
-    $.ajax({
-        type: "POST",
-        url: "validateLogin",
-        data: {
-            "username": document.getElementById("username_signup").value,
-            "password": document.getElementById("password_signup").value
-        }
-    });
+    if (t.value === '' || t.value === t.defaultValue) {
+
+        $.ajax({
+            type: "POST",
+            url: "loginValidation",
+            data: {
+                "username": document.getElementById("username_login").value,
+                "password": document.getElementById("password_login").value
+            },
+            dataType: "json"
+        }).done(function () {
+            alert("User Loged In!")
+        }).fail(function () {
+            alert("Error");
+        });
+    }
+    window.location = "home/index";
+
 }

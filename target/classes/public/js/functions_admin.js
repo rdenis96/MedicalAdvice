@@ -10,9 +10,9 @@ xMLHttpRequest_simptome.onreadystatechange = loadSimptome;
 xMLHttpRequest_simptome.send();
 //incarca toate bolile din baza de date
 function loadBoli(){
-
     if(xMLHttpRequest_boli.readyState==4 && xMLHttpRequest_boli.status==200){
-        var JSONList=eval('('+xMLHttpRequest_boli.responseText+')');
+
+        var JSONList=eval('('+xMLHttpRequest.responseText+')');
         var DDList = document.getElementById('lista_boli');
         DDList.innerHTML='';
 
@@ -21,14 +21,15 @@ function loadBoli(){
             var divBoala = document.createElement('div');
             var labBoala = document.createElement('label');
 
-            labBoala.innerHTML = JSONList[i];
+            labBoala.innerHTML = JSONList[i].disease;
 
-            divBoala.onclick = function(){ completeaza_boala(JSONList[i]) };
+            divBoala.onclick = function(){ completeaza_boala(JSONList[i].disease) };
             divBoala.appendChild(labBoala);
 
             DDList.appendChild(divBoala);
 
         }
+
     }
 }
 //incarca toate simptomele din baza de date
@@ -43,9 +44,9 @@ function loadSimptome(){
             var divSimptoma = document.createElement('div');
             var labSimptoma = document.createElement('label');
 
-            labSimptoma.innerHTML = JSONList[i];
+            labSimptoma.innerHTML = JSONList[i].symptom;
 
-            divSimptoma.onclick = function(){ completeaza_simptoma(JSONList[i]) };
+            divSimptoma.onclick = function(){ completeaza_simptoma(JSONList[i].symptom) };
             divSimptoma.appendChild(labSimptoma);
 
             DDList.appendChild(divSimptoma);
@@ -57,12 +58,14 @@ function loadSimptome(){
 function completeaza_boala(text){
 
     document.getElementById("boala").value=text;
+    document.getElementById("lista_boli").setAttribute('style', 'display: none');
 
 }
 //daca se da click pe o simptoma sugerata se completeaza automat cu numele ei
 function completeaza_simptoma(text){
 
     document.getElementById("simptoma").value=text;
+    document.getElementById("lista_simptome").setAttribute('style', 'display: none');
 
 }
 //cauta boala in lista

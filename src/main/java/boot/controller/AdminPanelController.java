@@ -21,23 +21,22 @@ public class AdminPanelController {
     @RequestMapping(value = "getBoliList", method = RequestMethod.GET)
     @ResponseBody
     public String getBoliList(){
-        //TREBUIE NISTE FUNCTII CARE SA RETURNEZE DOAR BOLILE SI DOAR SIMPTOMELE
-       /* List<DiseaseSymptom> diseases = diseaseSymptomService.getBoli();
 
-        System.out.println(new Gson().toJson(diseases));
-        return new Gson().toJson(diseases);
-        */return "";
+        List<DiseaseSymptom> symptoms = diseaseSymptomService.getAll();
+
+        System.out.println(new Gson().toJson(symptoms));
+        return new Gson().toJson(symptoms);
+
     }
 
     @RequestMapping(value = "getSimptomeList", method = RequestMethod.GET)
     @ResponseBody
     public String getSimptomeList()
     {
-        /*List<DiseaseSymptom> symptoms = diseaseSymptomService.getSimptome();
+        List<DiseaseSymptom> symptoms = diseaseSymptomService.getAll();
 
         System.out.println(new Gson().toJson(symptoms));
         return new Gson().toJson(symptoms);
-        */ return "";
     }
 
 }

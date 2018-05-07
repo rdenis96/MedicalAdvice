@@ -1,5 +1,6 @@
 
 var xMLHttpRequest = new XMLHttpRequest();
+
 xMLHttpRequest.open("GET","getSymptomsList",true);
 xMLHttpRequest.onreadystatechange = loadData;
 xMLHttpRequest.send();
@@ -20,7 +21,7 @@ function fct(){
 }
 
 function timerupdate() {
-    count = 5;
+    count = 3;
     timer = setInterval(function () {
         document.getElementById("countdown").innerText = count;
         count--;

@@ -23,7 +23,7 @@ public class StartPageController {
         return "StartPage";
     }
 
-    @RequestMapping(value = "loginValidation", method = RequestMethod.POST)
+    @RequestMapping(value = "loginValidation", method = RequestMethod.POST, produces = "application/json")
     public int validateLogin(@ModelAttribute("username") String username,
                               @ModelAttribute("password") String password)
     {
