@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.List;
 
 @Controller
@@ -18,25 +17,30 @@ public class AdminPanelController {
     @Autowired
     DiseaseSymptomService diseaseSymptomService;
 
-    @RequestMapping(value = "getBoliList", method = RequestMethod.GET)
-    @ResponseBody
-    public String getBoliList(){
+    @RequestMapping(value = "panel",method = RequestMethod.GET)
+    public String loadAdmin() {
+        return "AdminPanel";
+    }
 
-        List<DiseaseSymptom> symptoms = diseaseSymptomService.getAll();
+    @RequestMapping(value = "getSimptomsList", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public String getSimptomsList(){
+
+        List<String> symptoms = diseaseSymptomService.getAllSymptoms();
 
         System.out.println(new Gson().toJson(symptoms));
         return new Gson().toJson(symptoms);
 
     }
 
-    @RequestMapping(value = "getSimptomeList", method = RequestMethod.GET)
+    @RequestMapping(value = "getDiseasesList", method = RequestMethod.GET,produces = "application/json")
     @ResponseBody
-    public String getSimptomeList()
+    public String getDiseasesList()
     {
-        List<DiseaseSymptom> symptoms = diseaseSymptomService.getAll();
+        List<String> disease = diseaseSymptomService.getAllDiseases();
 
-        System.out.println(new Gson().toJson(symptoms));
-        return new Gson().toJson(symptoms);
+        System.out.println(new Gson().toJson(disease));
+        return new Gson().toJson(disease);
     }
 
 }

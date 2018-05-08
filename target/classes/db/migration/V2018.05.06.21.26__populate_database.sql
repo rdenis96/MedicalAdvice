@@ -2175,7 +2175,7 @@ INSERT INTO `diseases_and_symptoms` (`disease`, `symptom`) VALUES
 --
 
 CREATE TABLE `users` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `username` varchar(264) NOT NULL,
   `password` varchar(264) NOT NULL,
   `email` varchar(264) NOT NULL,
@@ -2186,28 +2186,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`ID`, `username`, `password`, `email`, `privilege`) VALUES
-(1, 'admin', 'admin', 'admin@medicaladvice.com', 1);
+INSERT INTO `users` VALUES
+  (null, 'admin', 'admin', 'admin@medicaladvice.com', 1);
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`ID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
