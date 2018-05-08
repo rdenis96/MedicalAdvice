@@ -59,7 +59,7 @@ function logIn(){
                 alert("Logged was successful!");
                 localStorage.setItem("myUsername",document.getElementById("username_login").value)
                 alert(localStorage.getItem("myUsername"));
-
+                window.location = "home/index";
             },
             error : function (result) {
                 alert("Account does not exist or credentials are wrong!")

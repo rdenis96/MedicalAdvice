@@ -22,6 +22,15 @@ function signUp(){
             "username": document.getElementById("username_signup").value,
             "password": document.getElementById("password_signup").value,
             "email": document.getElementById("email_signup").value
+        },
+        contentType: "application/json; charset=utf-8",
+        dataType : "json",
+        async: true,
+        success : function(result) {
+            alert("Logged was successful!");
+            localStorage.setItem("myUsername",document.getElementById("username_login").value)
+            alert(localStorage.getItem("myUsername"));
+
         }
     });
 
@@ -37,19 +46,26 @@ function logIn(){
     if (t.value === '' || t.value === t.defaultValue) {
 
         $.ajax({
-            type: "POST",
-            url: "loginValidation",
+            type : "POST",
+            url : "loginValidation",
             data: {
                 "username": document.getElementById("username_login").value,
                 "password": document.getElementById("password_login").value
             },
-            dataType: "json"
-        }).done(function () {
-            alert("User Loged In!")
-        }).fail(function () {
-            alert("Error");
+            contentType: "application/json; charset=utf-8",
+            dataType : "json",
+            async: true,
+            success : function(result) {
+                alert("Logged was successful!");
+                localStorage.setItem("myUsername",document.getElementById("username_login").value)
+                alert(localStorage.getItem("myUsername"));
+                window.location = "home/index";
+            },
+            error : function (result) {
+                alert("Account does not exist or credentials are wrong!")
+            }
         });
     }
-    window.location = "home/index";
+    //window.location = "home/index";
 
 }

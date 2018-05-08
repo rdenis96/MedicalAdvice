@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../public/css/style_admin.css">
-    <script src="../public/js/functions_admin.js"></script>
+    <link rel="stylesheet" href="../css/style_admin.css">
+    <script src="../js/functions_admin.js"></script>
     <title>Medical Advice</title>
 </head>
 
@@ -26,27 +26,17 @@
 <div id="content">
     <div id="content_holder">
 
-        <form method="POST">
-            <h1>Adaugare/stergere simptome</h1>
-            <input id="boala" type="text" name="boala" placeholder="Boala" oninput="cauta_boala()" onclick="afiseaza_ddlb()">
-            <div id="lista_boli" style="display: none">
-                <div onclick="completeaza_boala('Cancer')"><label>Cancer</label></div>
-                <div onclick="completeaza_boala('tbc')"><label>tbc</label></div>
-                <div onclick="completeaza_boala('raceala')"><label>raceala</label></div>
-                <div onclick="completeaza_boala('infectie')"><label>infectie</label></div>
+        <h1>Adaugare/stergere simptome</h1>
+        <input id="boala" type="text" name="boala" placeholder="Boala" oninput="cauta_boala()" onclick="afiseaza_ddlb()" autocomplete="off">
+        <div id="lista_boli" style="display: none">
 
-            </div>
+        </div>
 
-            <input id="simptoma" type="text" name="simptoma" placeholder ="Simptoma corespunzatoare" oninput="cauta_simptoma()" onclick="afiseaza_ddls()">
-            <div id="lista_simptome" style="display: none">
-                <div onclick="completeaza_simptoma('tuse')"><label>tuse</label></div>
-                <div onclick="completeaza_simptoma('febra')"><label>febra</label></div>
-                <div onclick="completeaza_simptoma('indigestie')"><label>indigestie</label></div>
-                <div onclick="completeaza_simptoma('varsaturi')"><label>varsaturi</label></div>
+        <input id="simptoma" type="text" name="simptoma" placeholder ="Simptoma corespunzatoare" oninput="cauta_simptoma()" onclick="afiseaza_ddls()" autocomplete="off">
+        <div id="lista_simptome" style="display: none">
 
-            </div>
-            <input id="modificare" type="submit" value="Modifica" onclick="modificare()">
-        </form>
+        </div>
+        <button id="modificare" onclick="modificare()">Modifica</button>
 
     </div>
 </div>
