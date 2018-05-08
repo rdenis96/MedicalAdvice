@@ -7,8 +7,10 @@ CREATE TABLE `history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `history`
-  ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `UserId` (`UserId`);
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `history`
+  ADD FOREIGN KEY (`UserId`) REFERENCES users(`ID`);
 
 ALTER TABLE `history`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;

@@ -6,10 +6,7 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,36 +23,43 @@ public class StartPageController {
         return "StartPage";
     }
 
-    @RequestMapping(value = "loginValidation", method = RequestMethod.POST)
+    @RequestMapping(value = "loginValidation", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public int validateLogin(@ModelAttribute("username") String username,
-                              @ModelAttribute("password") String password,
-                             Model model)
+    public int validateLogin(@RequestParam("username") String username,
+                              @RequestParam("password") String password)
     {
+
+        System.out.println("USERU BA! " + username + "--" + password + "--");
         User user = userService.getByUsernameAndPassword(username,password);
         if(user != null)
         {
-            return HttpServletResponse.SC_OK;
+            return 1;
         }
-        return HttpServletResponse.SC_FORBIDDEN;
+        return 0;
     }
 
-    @RequestMapping(value = "registerValidation", method = RequestMethod.POST)
+    @RequestMapping(value = "registerValidation", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public  int validateRegister(@ModelAttribute("username") String username,
                                  @ModelAttribute("password") String password,
                                  @ModelAttribute("email") String email)
     {
+        System.out.println("USERU BA! " + username + "--" + password + "--" + email);
         User user = userService.getByUsername(username);
         if(user != null)
-            return HttpServletResponse.SC_FORBIDDEN;
+            return 0;
 
         user = userService.getByEmail(email);
         if(user != null)
-            return HttpServletResponse.SC_FORBIDDEN;
+            return 0;
 
+        user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setPrivilege(0);
+        user.setEmail(email);
         userService.Add(user);
-        return HttpServletResponse.SC_OK;
+        return 1;
     }
 
 }
