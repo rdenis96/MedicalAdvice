@@ -86,16 +86,18 @@ function loadData() {
 
         for (var i=0;i<JSONList.length;i++){
 
+            var symptom = JSONList[i];
+
             var divSimpt = document.createElement('div');
             var inpSimpt = document.createElement('input');
             var labSimpt = document.createElement('label');
 
             inpSimpt.setAttribute('type','checkbox');
             inpSimpt.setAttribute('onchange','aduna()');
-            inpSimpt.setAttribute('value',JSONList[i].symptom);
+            inpSimpt.setAttribute('value',symptom);
             inpSimpt.setAttribute('name',"chackbox_name");
 
-            labSimpt.innerHTML = JSONList[i].symptom;
+            labSimpt.innerHTML = symptom;
 
             divSimpt.appendChild(inpSimpt);
             divSimpt.appendChild(labSimpt);
@@ -112,3 +114,6 @@ function loadData() {
 function logOut(){
     alert("logout");
 }
+
+
+

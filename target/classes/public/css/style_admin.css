@@ -84,7 +84,7 @@ aside{
     max-height: 300px;
     overflow-y: auto;
     border-bottom: 1px solid darkgrey;
-    background: rgba(144, 238, 144, 0.9);
+    background: rgba(144, 238, 144, 0.55);
 }
 
 #lista_boli div{
@@ -112,7 +112,7 @@ aside{
     max-height: 300px;
     overflow-y: auto;
     border-bottom: 1px solid darkgrey;
-    background: rgba(144, 238, 144, 0.8);
+    background: rgba(144, 238, 144, 0.55);
 }
 
 #lista_simptome div{
