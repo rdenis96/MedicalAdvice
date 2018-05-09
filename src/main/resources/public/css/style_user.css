@@ -101,3 +101,8 @@ td{
 .boli{
     width: 30%;
 }
+
+.descriere{
+    background-color: lightgray;
+    font-weight: bold;
+}
