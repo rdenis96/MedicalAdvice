@@ -19,8 +19,8 @@ public class HistoryUserServiceImpl implements HistoryUserService {
     }
 
     @Override
-    public List<HistoryUser> getByUserId(Integer id) {
-        return historyUserRepository.getByUserId(id);
+    public List<HistoryUser> getByUserid(Integer id) {
+        return historyUserRepository.getByUserid(id);
     }
 
     @Override

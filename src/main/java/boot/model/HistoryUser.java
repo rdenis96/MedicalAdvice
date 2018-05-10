@@ -13,7 +13,7 @@ public class HistoryUser { //DE VERIFICAT/COMPLETAT
     private Integer id;
 
     @Column(name = "UserID")
-    private Integer userId;
+    private Integer userid;
 
     @Column(name = "Diseases")
     private String diseases;
@@ -24,16 +24,16 @@ public class HistoryUser { //DE VERIFICAT/COMPLETAT
     @Column(name = "Date")
     private Date date;
 
-    public Integer getID() {
+    public Integer getId() {
         return id;
     }
 
-    public Integer getUserID() {
-        return userId;
+    public Integer getUserid() {
+        return userid;
     }
 
-    public void setUserID(Integer userID) {
-        userId = userID;
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
     public String getDiseases() {
@@ -41,7 +41,7 @@ public class HistoryUser { //DE VERIFICAT/COMPLETAT
     }
 
     public void setDiseases(String diseases) {
-        diseases = diseases;
+        this.diseases = diseases;
     }
 
     public String getSymptoms() {
@@ -49,7 +49,7 @@ public class HistoryUser { //DE VERIFICAT/COMPLETAT
     }
 
     public void setSymptoms(String symptoms) {
-        symptoms = symptoms;
+        this.symptoms = symptoms;
     }
 
     public Date getDate() {
@@ -57,6 +57,6 @@ public class HistoryUser { //DE VERIFICAT/COMPLETAT
     }
 
     public void setDate(Date date) {
-        date = date;
+        this.date = date;
     }
 }

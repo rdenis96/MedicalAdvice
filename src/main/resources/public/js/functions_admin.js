@@ -1,4 +1,10 @@
 
+window.onload = function(ev){
+    if("myUsername" in sessionStorage === false)
+        window.location.href = "/";
+    console.log(sessionStorage.getItem("myUsername"));
+};
+
 var xMLHttpRequest_boala = new XMLHttpRequest(), xMLHttpRequest_simptoma = new XMLHttpRequest();
 
 xMLHttpRequest_boala.open("GET","getDiseasesList",true);
@@ -139,7 +145,10 @@ function modificare(){
 
 
 function logOut(){
-    alert("logout");
+
+    alert("Logged out!");
+    sessionStorage.removeItem("myUsername");
+    window.location.href = "/";
 }
 
 function goHome(){

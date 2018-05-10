@@ -26,6 +26,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "getSymptomsList", method = RequestMethod.GET)
+    @ResponseBody
     public String getSymptomsList()
     {
         List<String> symptoms = diseaseSymptomService.getAllSymptoms();
@@ -36,7 +37,7 @@ public class HomeController {
 
     @RequestMapping(value = "selectedCheckboxes")
     public void getSelectedCheckboxes(@RequestParam(value = "selCheck[]") List<String> selectedValues){
-        System.out.println("VALORILE PARSATE:");
+        //System.out.println("VALORILE PARSATE:");
         for(String str : selectedValues)
             System.out.println("VALOARE: " + str);
     }

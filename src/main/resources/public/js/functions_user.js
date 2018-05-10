@@ -1,4 +1,10 @@
 
+window.onload = function(ev){
+    if("myUsername" in sessionStorage === false)
+        window.location.href = "/";
+    console.log(sessionStorage.getItem("myUsername"));
+};
+
 var xMLHttpRequest = new XMLHttpRequest();
 
 xMLHttpRequest.open("GET","getHistoryList",true);
@@ -40,7 +46,10 @@ function loadHistory(){
 
 
 function logOut(){
-    alert("logout");
+
+    alert("Logged out!");
+    sessionStorage.removeItem("myUsername");
+    window.location.href = "/";
 }
 
 function goHome(){
