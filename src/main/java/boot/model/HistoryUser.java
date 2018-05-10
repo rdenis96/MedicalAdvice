@@ -1,6 +1,7 @@
 package boot.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "history")
@@ -9,37 +10,53 @@ public class HistoryUser { //DE VERIFICAT/COMPLETAT
     @Id
     @GeneratedValue
     @Column(name = "ID")
-    private int ID;
+    private Integer id;
 
     @Column(name = "UserID")
-    private String UserID;
+    private Integer userId;
 
     @Column(name = "Diseases")
-    private String Diseases;
+    private String diseases;
 
     @Column(name = "Symptoms")
-    private String Symptoms;
+    private String symptoms;
 
     @Column(name = "Date")
-    private java.util.Date Date;
+    private Date date;
 
+    public Integer getID() {
+        return id;
+    }
 
-    public String getUserID() {
-        return UserID;
+    public Integer getUserID() {
+        return userId;
+    }
+
+    public void setUserID(Integer userID) {
+        userId = userID;
     }
 
     public String getDiseases() {
-        return Diseases;
+        return diseases;
+    }
+
+    public void setDiseases(String diseases) {
+        diseases = diseases;
     }
 
     public String getSymptoms() {
-        return Symptoms;
+        return symptoms;
     }
 
-    public java.util.Date getDate() {
-        return Date;
+    public void setSymptoms(String symptoms) {
+        symptoms = symptoms;
     }
 
-    //POATE MAI TEREBUIE NISTE SETTERE?
+    public Date getDate() {
+        return date;
+    }
 
+    public void setDate(Date date) {
+        date = date;
+    }
 }

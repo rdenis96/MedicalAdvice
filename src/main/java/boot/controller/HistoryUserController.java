@@ -3,6 +3,7 @@ package boot.controller;
 
 import boot.model.HistoryUser;
 import boot.service.DiseaseSymptomService;
+import boot.service.HistoryUserService;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,23 +17,21 @@ import java.util.List;
 public class HistoryUserController { //DE VERIFICAT/COMPLETAT
 
     @Autowired
-    DiseaseSymptomService diseaseSymptomService;
+    HistoryUserService historyUserService;
 
     @RequestMapping(value = "history",method = RequestMethod.GET)
-    public String loadAdmin() {
+    public String loadHistory() {
         return "HistoryUser";
     }
 
     @RequestMapping(value = "getHistoryList", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
     public String getHistoryList(){
-/*
-        List<HistoryUser> symptoms = diseaseSymptomService.getHistoryByUser();
+        List<HistoryUser> symptoms = historyUserService.getByUserId(1);
 
+        System.out.println("VRSAMOR");
         System.out.println(new Gson().toJson(symptoms));
+
         return new Gson().toJson(symptoms);
-*/
-        return "";
     }
 
 }

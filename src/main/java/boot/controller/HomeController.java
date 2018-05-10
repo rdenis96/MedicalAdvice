@@ -26,7 +26,6 @@ public class HomeController {
     }
 
     @RequestMapping(value = "getSymptomsList", method = RequestMethod.GET)
-    @ResponseBody
     public String getSymptomsList()
     {
         List<String> symptoms = diseaseSymptomService.getAllSymptoms();
