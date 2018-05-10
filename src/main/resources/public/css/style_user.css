@@ -23,7 +23,7 @@ header{
 aside{
     float: left;
     position: fixed;
-    margin-top: 85px;
+    margin-top: 75px;
     width: 250px;
 }
 
@@ -75,11 +75,11 @@ table{
 }
 
 tr:nth-child(even) {
-    background-color: #c9ddff;
+    background: rgba(201, 220, 255, 0.7);
 }
 
 tr:nth-child(odd) {
-    background: rgba(144, 238, 144, 0.55);
+    background: rgba(144, 238, 144, 0.5);
 }
 
 td{
@@ -103,6 +103,6 @@ td{
 }
 
 .descriere{
-    background-color: lightgray;
+    background: rgba(211, 211, 211, 1);
     font-weight: bold;
 }

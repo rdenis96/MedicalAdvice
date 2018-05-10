@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("user")
-public class HistoryUserController { //DE VERIFICAT/COMPLETAT
+public class HistoryUserController {
 
     @Autowired
     HistoryUserService historyUserService;

@@ -1,7 +1,9 @@
 package boot.controller;
 
 import boot.model.DiseaseSymptom;
+import boot.model.User;
 import boot.service.DiseaseSymptomService;
+import boot.service.UserService;
 import com.google.gson.Gson;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class HomeController {
     @Autowired
     DiseaseSymptomService diseaseSymptomService;
 
+    @Autowired
+    UserService userService;
+
     @RequestMapping(value = "index",method = RequestMethod.GET)
     public String loadIndex() {
         return "index";
@@ -35,6 +40,21 @@ public class HomeController {
         return new Gson().toJson(symptoms);
     }
 
+    @RequestMapping(value = "checkAdmin", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public int validateLogin(@RequestParam("username") String username){
+
+        System.out.println("USERU BA! " + username + "--");
+        User user = userService.getByUsername(username);
+        if(user != null)
+        {
+            if(user.getPrivilege()==1)
+                return 2;
+            return 1;
+        }
+        return 0;
+    }
+
     @RequestMapping(value = "selectedCheckboxes")
     public void getSelectedCheckboxes(@RequestParam(value = "selCheck[]") List<String> selectedValues){
         //System.out.println("VALORILE PARSATE:");
@@ -42,6 +62,7 @@ public class HomeController {
             System.out.println("VALOARE: " + str);
     }
 
+    @RequestMapping(value = "ceva")
     public String getCeva(){ //functia asta ar trebui sa returneze un json cu m spunea razvan. E POSIBIL SA NU MEARGA
 
         List<String> lista_boli = diseaseSymptomService.getAllDiseases();
@@ -71,9 +92,9 @@ public class HomeController {
                         c=1;
                     else
                         c=0;
-                    rezultat = rezultat + "\"" + simptoma + "\":" + "\"" + c + "\",";
+                    rezultat = rezultat + '"' + simptoma + '"' + ":" + '"' + c + '"' + ",";
                 }
-                rezultat = rezultat + "\"disease\":" + "\"" + boala + "\",";
+                rezultat = rezultat + '"' + "disease" + '"' + ":" + '"' + boala + '"' + ",";
                 rezultat = rezultat.substring(0, rezultat.length()-1);
                 rezultat = rezultat + "},";
             }
@@ -83,9 +104,9 @@ public class HomeController {
                     c=1;
                 else
                     c=1;
-                rezultat = rezultat + "\"" + simptoma + "\":" + "\"" + c + "\",";
+                rezultat = rezultat + '"' + simptoma + '"' + ":" + '"' + c + '"' + ",";
             }
-            rezultat = rezultat + "\"disease\":" + "\"" + boala + "\",";
+            rezultat = rezultat + '"' + "disease" + '"' + ":" + '"' + boala + '"' + ",";
             rezultat = rezultat.substring(0, rezultat.length()-1);
             rezultat = rezultat + "},";
         }

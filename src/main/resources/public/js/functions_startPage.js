@@ -46,9 +46,6 @@ function signUp(){
             alert("Error!")
         });
 
-
-
-
 }
 
 function logIn(){

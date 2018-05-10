@@ -24,7 +24,6 @@ function loadHistory(){
 
         for (var i=0;i<JSONList.length;i++){
 
-
             var data_i = row.insertCell(0);
             var simptome_i = row.insertCell(1);
             var boli_i = row.insertCell(2);
@@ -46,8 +45,6 @@ function loadHistory(){
 
 
 function logOut(){
-
-    alert("Logged out!");
     sessionStorage.removeItem("myUsername");
     window.location.href = "/";
 }

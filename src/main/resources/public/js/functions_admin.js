@@ -145,8 +145,6 @@ function modificare(){
 
 
 function logOut(){
-
-    alert("Logged out!");
     sessionStorage.removeItem("myUsername");
     window.location.href = "/";
 }
