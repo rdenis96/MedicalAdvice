@@ -19,5 +19,8 @@ public interface DiseaseSymptomService {
 
     public List<String> getAllDiseases();
 
-    public Boolean Add(DiseaseSymptom diseaseSymptom);
+    public Boolean Add(String disease, String symptom);
+
+    public void Remove(String disease, String symptom);
+
 }

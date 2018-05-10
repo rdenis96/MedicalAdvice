@@ -71,7 +71,12 @@ public class DiseaseSymptomServiceImpl implements DiseaseSymptomService {
     }
 
     @Override
-    public Boolean Add(DiseaseSymptom diseaseSymptom) {
+    public Boolean Add(String disease, String symptom) {
+
+        DiseaseSymptom diseaseSymptom = new DiseaseSymptom();
+        diseaseSymptom.setDisease(disease);
+        diseaseSymptom.setSymptom(symptom);
+
         try
         {
             diseaseSymptomRepository.saveAndFlush(diseaseSymptom);
@@ -82,4 +87,11 @@ public class DiseaseSymptomServiceImpl implements DiseaseSymptomService {
             return false;
         }
     }
+
+    @Override
+    public void Remove(String disease, String symptom) {
+        DiseaseSymptom diseaseSymptom = diseaseSymptomRepository.getByDiseaseAndSymptom(disease,symptom);
+        diseaseSymptomRepository.delete(diseaseSymptom);
+    }
+
 }

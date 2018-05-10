@@ -75,6 +75,11 @@ function timerupdate() {
             //ml alg
             var testModel = id3(examples,'disease',array_check);
 
+            //toate bolile
+            alert(diseaseList3);
+            diseaseList3 = [];
+
+
             //afis graf
             drawGraph(testModel,'canvas');
 
