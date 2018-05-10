@@ -49,6 +49,7 @@ var timer;
 var array_check=[];
 
 
+
 function fct(){
 
     var butoane_bifate=document.querySelectorAll('input[type="checkbox"]:checked');
@@ -74,10 +75,50 @@ function timerupdate() {
 
             //ml alg
             var testModel = id3(examples,'disease',array_check);
+            var testModel_2 = id31(examples,'disease',array_check);
+
+            var ulBoalaProbabila = document.getElementById("boala_probabila_ul");
+            while (ulBoalaProbabila.firstChild) {
+                ulBoalaProbabila.removeChild(ulBoalaProbabila.firstChild);
+            }
+            for(var boala in disease31)
+            {
+                alert(boala + " ---- " + disease31[boala])
+                var elemLi = document.createElement("li");
+                var textLi = document.createTextNode(disease31[boala]);
+                elemLi.appendChild(textLi);
+                ulBoalaProbabila.appendChild(elemLi);
+            }
+
+
+            var ulBoli = document.getElementById("boli_posibille_ul");
+            while (ulBoli.firstChild) {
+                ulBoli.removeChild(ulBoli.firstChild);
+            }
+            var ulSimptome = document.getElementById("simptome_introduse_ul");
+            while (ulSimptome.firstChild) {
+                ulSimptome.removeChild(ulSimptome.firstChild);
+            }
+            for(var boala in diseaseList3)
+            {
+                var elemLi = document.createElement("li");
+                var textLi = document.createTextNode(diseaseList3[boala]);
+                elemLi.appendChild(textLi);
+                ulBoli.appendChild(elemLi);
+            }
+
+            for(var simptoma in array_check)
+            {
+                var elemLi = document.createElement("li");
+                var textLi = document.createTextNode(array_check[simptoma]);
+                elemLi.appendChild(textLi);
+                ulSimptome.appendChild(elemLi);
+            }
+
 
             //toate bolile
-            alert(diseaseList3);
             diseaseList3 = [];
+            disease31 = [];
 
             //afis graf
             drawGraph(testModel,'canvas');
@@ -94,6 +135,8 @@ function timerupdate() {
             });
 
             document.getElementById("countdown").innerText = "/";
+
+            array_check = [];
         }
     }, 1000);
 }

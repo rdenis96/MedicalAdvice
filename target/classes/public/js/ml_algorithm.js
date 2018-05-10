@@ -1,6 +1,6 @@
 //ID3 Decision Tree Algorithm
 
-var disease31 = [];
+
 //main algorithm and prediction functions
 
 var id31 = function(_s,target,features){
@@ -15,7 +15,6 @@ var id31 = function(_s,target,features){
     if(features.length == 0){
         console.log("returning the most dominate feature!!!");
         var topTarget = mostCommon(_s.pluck(target));
-        disease31.push(topTarget);
         return {type:"result", val: topTarget, name: topTarget, alias: topTarget+randomTag()};
     }
     var bestFeature = maxGain(_s,target,features);
@@ -36,28 +35,26 @@ var id31 = function(_s,target,features){
     return node;
 }
 
-var diseaseList3 =[];
 
 var id3 = function(_s,target,features){
     var targets = _.unique(_s.pluck(target));
     if (targets.length == 1){
-        console.log("end node! "+targets[0]);
+        //console.log("end node! "+targets[0]);
         return {type:"result", val: targets[0], name: targets[0],alias:targets[0]+randomTag() };
     }
     if(features.length == 0){
-        console.log("returning the most dominate feature!!!");
+        //console.log("returning the most dominate feature!!!");
         var topTarget = mostCommon(_s.pluck(target));
-        diseaseList3.push(topTarget);
         return {type:"result", val: topTarget, name: topTarget, alias: topTarget+randomTag()};
     }
     var bestFeature = maxGain(_s,target,features);
     var remainingFeatures = _.without(features,bestFeature);
     var possibleValues = _.unique(_s.pluck(bestFeature));
-    console.log("node for "+bestFeature);
+    //console.log("node for "+bestFeature);
     var node = {name: bestFeature,alias: bestFeature+randomTag()};
     node.type = "feature";
     node.vals = _.map(possibleValues,function(v){
-        console.log("creating a branch for "+v);
+        //console.log("creating a branch for "+v);
         var _newS = _(_s.filter(function(x)
         {return x[bestFeature] == v}));
         var child_node = {name:v,alias:v+randomTag(),type: "feature_value"};

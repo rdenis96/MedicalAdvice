@@ -12,8 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,13 +70,16 @@ public class HomeController {
     }
 
     @RequestMapping(value = "updateHistory")
-    public void getSelectedCheckboxes(@RequestParam("username") String username, @RequestParam("diseases") List<String> diseases, @RequestParam("symptoms") List<String> symptoms){
+    public void getSelectedCheckboxes(@RequestParam("username") String username, @RequestParam("diseases") List<String> diseases, @RequestParam("symptoms") List<String> symptoms) {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime data_curenta = LocalDateTime.now();
 
         //CEVA PT ADD
-
     }
+
+
+
+
 
 }

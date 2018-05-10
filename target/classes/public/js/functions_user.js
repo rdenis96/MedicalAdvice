@@ -1,4 +1,10 @@
 
+window.onload = function(ev){
+    if("myUsername" in sessionStorage === false)
+        window.location.href = "/";
+    console.log(sessionStorage.getItem("myUsername"));
+};
+
 var xMLHttpRequest = new XMLHttpRequest();
 
 xMLHttpRequest.open("GET","getHistoryList",true);
@@ -17,7 +23,6 @@ function loadHistory(){
         var table = document.getElementById("tabel");
 
         for (var i=0;i<JSONList.length;i++){
-
 
             var data_i = row.insertCell(0);
             var simptome_i = row.insertCell(1);
@@ -40,7 +45,8 @@ function loadHistory(){
 
 
 function logOut(){
-    alert("logout");
+    sessionStorage.removeItem("myUsername");
+    window.location.href = "/";
 }
 
 function goHome(){

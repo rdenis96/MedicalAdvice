@@ -1822,7 +1822,7 @@ INSERT INTO `diseases_and_symptoms` (`disease`, `symptom`) VALUES
 ('upper respiratory infection', 'frail'),
 ('upper respiratory infection', 'cystic lesion'),
 ('upper respiratory infection', 'symptom aggravating factors'),
-('upper respiratory infection', 'hemodynamically stable\r\n'),
+('upper respiratory infection', 'hemodynamically stable'),
 ('dementia', 'fever'),
 ('dementia', 'fall'),
 ('dementia', 'unresponsiveness'),
