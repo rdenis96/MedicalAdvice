@@ -55,7 +55,7 @@ aside{
 
 #elemente_lista{
     padding-left: 5px;
-    max-height: 280px;
+    max-height: 310px;
     overflow: auto;
     word-wrap: break-word;
 }
@@ -66,9 +66,20 @@ aside{
     color: lightblue;
 }
 
+#reset_cautare{
+    color: lightblue;
+    background: rgba(51, 51, 51, 0.9);
+    border: none;
+    cursor: pointer;
+    margin-top:7px;
+    margin-bottom: 13px;
+    height:20px;
+    width: 180px;
+}
+
 #account_button{
     color: black;
-    background: rgba(100, 255, 0, 0.8);
+    background: rgba(201, 220, 255, 0.9);
     border: none;
     cursor: pointer;
     margin-top:10px;
@@ -137,16 +148,25 @@ aside{
 #holder{
     position: absolute;
     left: 10px;
-    top: 0;
+    top: -7px;
 }
 
 #btnAdmin{
     color: black;
-    background: lightblue;
+    background: rgb(255, 255, 255);
     border: none;
     cursor: pointer;
     margin-top:10px;
-    font-weight: bold;
+
     height:40px;
     width: 180px;
+}
+
+#btnAdmin label{
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+#text_de_umplutura{
+    font-size: 1.2em;
 }

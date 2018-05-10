@@ -17,11 +17,13 @@ window.onload = function(ev){
         if(result==2){
 
             var btn = document.createElement('button');
+            var lbl = document.createElement('label');
 
-            btn.innerHTML="Admin panel";
+            lbl.innerHTML="Admin panel";
             btn.setAttribute('onclick','to_admin()');
             btn.setAttribute('id', 'btnAdmin');
 
+            btn.appendChild(lbl);
             document.getElementById('holder').appendChild(btn);
 
         }
@@ -57,7 +59,7 @@ function fct(){
 }
 
 function timerupdate() {
-    count = 6;
+    count = 3;
     timer = setInterval(function () {
         document.getElementById("countdown").innerText = count;
         count--;
@@ -167,4 +169,14 @@ function logOut(){
 
 function to_account(){
     window.location = "../user/history";
+}
+
+function reset_array_check() {
+
+    var r = confirm("Confirmati resetarea cautarii");
+    if (r == true) {
+        array_check=[];
+        window.location = "../home/index";
+    }
+
 }
