@@ -69,20 +69,34 @@ public class HomeController {
     }
 
     @RequestMapping(value = "ceva")
-    public String getCeva() throws IOException { //functia asta ar trebui sa returneze un json cu m spunea razvan. E POSIBIL SA NU MEARGA
+    public void getCeva() throws IOException { //functia asta ar trebui sa returneze un json cu m spunea razvan. E POSIBIL SA NU MEARGA
 
         List<String> diseasesList = diseaseSymptomService.getAllDiseases();
         List<String> symptomsList = diseaseSymptomService.getAllSymptoms();
         List<DiseaseSymptom> diseaseSymptomList = diseaseSymptomService.getAll();
+        Map<String,ArrayList<String>> dataSets = new HashMap<>();
+        for(DiseaseSymptom diseaseSymptom : diseaseSymptomList)
+        {
+
+            if(!dataSets.containsKey(diseaseSymptom.getDisease()))
+            {
+                ArrayList<String> first = new ArrayList<>();
+                first.add(diseaseSymptom.getSymptom());
+                dataSets.put(diseaseSymptom.getDisease(), first);
+            }
+            else
+                dataSets.get(diseaseSymptom.getDisease()).add(diseaseSymptom.getSymptom());
+
+        }
 
         ArrayList<String> rezultat = new ArrayList<>();
 
-        for(String disease: diseasesList)
+        for(String disease: dataSets.keySet())
         {
             for(String symptom : dataSets.get(disease))
             {
                 String query = "{";
-                for(String sy : symptoms)
+                for(String sy : symptomsList)
                 {
                     int c;
                     if(dataSets.get(disease).contains(sy) && sy.equals(symptom))
@@ -100,7 +114,7 @@ public class HomeController {
                 rezultat.add(query);
             }
             String query = "{";
-            for(String sy : symptoms)
+            for(String sy : symptomsList)
             {
                 int c;
                 if(dataSets.get(disease).contains(sy))
@@ -115,17 +129,19 @@ public class HomeController {
             query = query + "},";
             rezultat.add(query);
         }
-        String first = "[" + rezultat.get(0);
+        String first = "var examples = [" + rezultat.get(0);
         rezultat.set(0,first);
 
-        String last = rezultat.get(rezultat.size() - 1).substring(0, rezultat.get(rezultat.size() - 1).length() - 1) + "]";
+        String last = rezultat.get(rezultat.size() - 1).substring(0, rezultat.get(rezultat.size() - 1).length() - 1) + "]; \n examples = _(examples);";
         rezultat.remove(rezultat.size() - 1);
         rezultat.add(last);
 
         for(String str : rezultat)
             System.out.println(rezultat.indexOf(str) + " -> " + str);
 
-        File file4 = new File("src/com/company/output.txt");
+
+
+        File file4 = new File("src/main/resources/public/js/examples.js");
         RandomAccessFile stream = new RandomAccessFile(file4, "rw");
         FileChannel channel = stream.getChannel();
 
@@ -141,11 +157,6 @@ public class HomeController {
 
         stream.close();
         channel.close();
-
-
-        System.out.println("GATA !!!!!");
-
-        return new Gson().toJson(rezultat);
     }
 
 }
