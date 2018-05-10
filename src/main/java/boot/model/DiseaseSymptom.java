@@ -30,6 +30,13 @@ public class DiseaseSymptom {
         return symptom;
     }
 
+    public void setDisease(String disease) {
+        this.disease = disease;
+    }
+
+    public void setSymptom(String symptom) {
+        this.symptom = symptom;
+    }
 
     @Override
     public boolean equals(Object o) {

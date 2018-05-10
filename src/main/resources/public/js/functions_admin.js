@@ -135,11 +135,25 @@ function afiseaza_ddls(){
 
 
 function modificare(){
-    //TRIMITE VARIABILELE IN JAVA UNDE SE VERIFICA DACA COMBINATIA EXISTA.
-    //DACA DA, ATUNCI SE STERGE DIN BAZA DE DATE
-    //DACA NU, ATUNCI SE ADAUGA
+
     var boala=document.getElementById("boala").value;
     var simptoma=document.getElementById("simptoma").value;
+
+    $.ajax({
+        type: "GET",
+        url: "modificaDB",
+        data: {
+            boala_select: boala,
+            simptoma_select: simptoma
+        }
+    }).done(function(result) {
+        if(result!=-1){
+            window.location = "../admin/panel";
+        }
+    }).fail(function () {
+        alert("Error!")
+    });
+
 
 }
 

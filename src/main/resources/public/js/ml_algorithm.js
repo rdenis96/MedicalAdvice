@@ -35,6 +35,8 @@ var id31 = function(_s,target,features){
     return node;
 }
 
+var diseaseList3 =[];
+
 var id3 = function(_s,target,features){
     var targets = _.unique(_s.pluck(target));
     if (targets.length == 1){
@@ -44,6 +46,7 @@ var id3 = function(_s,target,features){
     if(features.length == 0){
         console.log("returning the most dominate feature!!!");
         var topTarget = mostCommon(_s.pluck(target));
+        diseaseList3.push(topTarget);
         return {type:"result", val: topTarget, name: topTarget, alias: topTarget+randomTag()};
     }
     var bestFeature = maxGain(_s,target,features);
