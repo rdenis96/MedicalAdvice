@@ -18,7 +18,7 @@ window.onload = function(ev){
 
             var btn = document.createElement('button');
 
-            btn.innerHTML="Admin pannel";
+            btn.innerHTML="Admin panel";
             btn.setAttribute('onclick','to_admin()');
             btn.setAttribute('id', 'btnAdmin');
 
@@ -57,7 +57,7 @@ function fct(){
 }
 
 function timerupdate() {
-    count = 3;
+    count = 6;
     timer = setInterval(function () {
         document.getElementById("countdown").innerText = count;
         count--;

@@ -163,7 +163,6 @@ var addEdges = function(node,g){
     return g;
 }
 
-
 var renderSamples = function(samples,$el,model,target,features){
     _.each(samples,function(s){
         var features_for_sample = _.map(features,function(x){return s[x]});
