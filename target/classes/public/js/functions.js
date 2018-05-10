@@ -1,4 +1,40 @@
 
+window.onload = function(ev){
+    if("myUsername" in sessionStorage === false)
+        window.location.href = "/";
+    console.log(sessionStorage.getItem("myUsername"));
+
+    var username=sessionStorage.getItem("myUsername");
+
+    $.ajax({
+        type: "POST",
+        url: "checkAdmin",
+        data: {
+            username: username
+        },
+        dataType: "json"
+    }).done(function(result) {
+        if(result==2){
+
+            var btn = document.createElement('button');
+
+            btn.innerHTML="Admin panel";
+            btn.setAttribute('onclick','to_admin()');
+            btn.setAttribute('id', 'btnAdmin');
+
+            document.getElementById('holder').appendChild(btn);
+
+        }
+    }).fail(function () {
+        alert("Error!")
+    });
+
+};
+
+function to_admin(){
+    window.location = "../admin/panel";
+}
+
 var xMLHttpRequest = new XMLHttpRequest();
 
 xMLHttpRequest.open("GET","getSymptomsList",true);
@@ -21,13 +57,26 @@ function fct(){
 }
 
 function timerupdate() {
-    count = 3;
+    count = 6;
     timer = setInterval(function () {
         document.getElementById("countdown").innerText = count;
         count--;
         if (count < 0) {
             clearInterval(timer);
-            fct();
+
+            fct(); //ia alea bifate
+
+            //pornesc diplay-ul pt grafic si rezultat
+            document.getElementById("instructiuni").setAttribute('style', 'display: none');
+            document.getElementById("result").setAttribute('style', 'display: inline-block');
+
+            //ml alg
+            var testModel = id3(examples,'disease',array_check);
+
+            //afis graf
+            drawGraph(testModel,'canvas');
+
+            //fct care ret checkboxes
             document.getElementById("countdown").innerText = "/";
             $.ajax({
                 type: "POST",
@@ -112,8 +161,10 @@ function loadData() {
 
 
 function logOut(){
-    alert("logout");
+    sessionStorage.removeItem("myUsername");
+    window.location.href = "/";
 }
 
-
-
+function to_account(){
+    window.location = "../user/history";
+}

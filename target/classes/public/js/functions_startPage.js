@@ -1,3 +1,8 @@
+window.onload = function(ev){
+    if("myUsername" in sessionStorage === true)
+        window.location = "home/index";
+    console.log(sessionStorage.getItem("myUsername"));
+};
 
 function activate_signUp(){
     document.getElementById("signup_input").setAttribute('style', 'display: inline-block');
@@ -12,60 +17,60 @@ function activate_logIn(){
 }
 
 
+
 //APELUL METODELOR ASTORA SUPRASCRIU ATRIBUTELE "REQUIERD" DE LA INPUT SI NU MAI AU LOC VALIDARILE
 function signUp(){
+
+    var username=document.getElementById("username_signup").value;
+    var password=document.getElementById("password_signup").value;
+    var email= document.getElementById("email_signup").value;
 
     $.ajax({
         type: "POST",
         url: "registerValidation",
         data: {
-            "username": document.getElementById("username_signup").value,
-            "password": document.getElementById("password_signup").value,
-            "email": document.getElementById("email_signup").value
+            username: username,
+            password: password,
+            email: email
         },
-        contentType: "application/json; charset=utf-8",
-        dataType : "json",
-        async: true,
-        success : function(result) {
-            alert("Logged was successful!");
-            localStorage.setItem("myUsername",document.getElementById("username_login").value)
-            alert(localStorage.getItem("myUsername"));
-
-        }
-    });
-
-    window.location = "home/index";
+        dataType: "json"
+        }).done(function(result) {
+            if(result == 1) {
+                alert("Account  was successfuly created!");
+                sessionStorage.setItem("myUsername", document.getElementById("username_login").value);
+                window.location = "home/index";
+            }
+            else
+                alert("Account already exists!");
+        }).fail(function () {
+            alert("Error!")
+        });
 
 }
 
 function logIn(){
 
-    var t=document.getElementById("username_login").value;
-    alert(t);
-
-    if (t.value === '' || t.value === t.defaultValue) {
+    var username=document.getElementById("username_login").value;
+    var password=document.getElementById("password_login").value;
 
         $.ajax({
             type : "POST",
             url : "loginValidation",
             data: {
-                "username": document.getElementById("username_login").value,
-                "password": document.getElementById("password_login").value
+                username: username,
+                password: password
             },
-            contentType: "application/json; charset=utf-8",
-            dataType : "json",
-            async: true,
-            success : function(result) {
+            dataType: "json"
+            }).done(function(result) {
+            if (result == 1) {
                 alert("Logged was successful!");
-                localStorage.setItem("myUsername",document.getElementById("username_login").value)
-                alert(localStorage.getItem("myUsername"));
+                sessionStorage.setItem("myUsername", document.getElementById("username_login").value);
                 window.location = "home/index";
-            },
-            error : function (result) {
-                alert("Account does not exist or credentials are wrong!")
             }
+            else
+                alert("Account does not exists or credentials are wrong!");
+        }).fail(function () {
+            alert("Error!")
         });
-    }
-    //window.location = "home/index";
 
 }

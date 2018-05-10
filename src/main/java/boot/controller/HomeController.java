@@ -10,6 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,57 +69,83 @@ public class HomeController {
     }
 
     @RequestMapping(value = "ceva")
-    public String getCeva(){ //functia asta ar trebui sa returneze un json cu m spunea razvan. E POSIBIL SA NU MEARGA
+    public String getCeva() throws IOException { //functia asta ar trebui sa returneze un json cu m spunea razvan. E POSIBIL SA NU MEARGA
 
-        List<String> lista_boli = diseaseSymptomService.getAllDiseases();
-        List<String> lista_simptome = diseaseSymptomService.getAllSymptoms();
-        List<DiseaseSymptom> perechi_boala_simptome = new ArrayList<>();
-        List<String> lista_simptome_pt_o_boala = new ArrayList<>();
+        List<String> diseasesList = diseaseSymptomService.getAllDiseases();
+        List<String> symptomsList = diseaseSymptomService.getAllSymptoms();
+        List<DiseaseSymptom> diseaseSymptomList = diseaseSymptomService.getAll();
 
-        Map<String, List<String>> boala_cu_simptomele_ei = new HashMap<>();
+        ArrayList<String> rezultat = new ArrayList<>();
 
-        for(String str:lista_boli){
-            perechi_boala_simptome=diseaseSymptomService.getByDisease(str);
-            for(DiseaseSymptom ds:perechi_boala_simptome){
-                lista_simptome_pt_o_boala.add(ds.getSymptom());
-            }
-            boala_cu_simptomele_ei.put(str,lista_simptome_pt_o_boala);
-            lista_simptome_pt_o_boala.clear();
-        }
-
-        int c;
-        String rezultat = "[";
-
-        for(String boala : lista_boli){
-            for(String simptoma_boala : boala_cu_simptomele_ei.get(boala)){
-                rezultat = rezultat + "{";
-                for(String simptoma : lista_simptome) {
-                    if(boala_cu_simptomele_ei.get(boala).contains(simptoma) && !simptoma.equals(simptoma_boala))
-                        c=1;
+        for(String disease: diseasesList)
+        {
+            for(String symptom : dataSets.get(disease))
+            {
+                String query = "{";
+                for(String sy : symptoms)
+                {
+                    int c;
+                    if(dataSets.get(disease).contains(sy) && sy.equals(symptom))
+                        c = 0;
+                    else if(dataSets.get(disease).contains(sy) && !sy.equals(symptom))
+                        c = 1;
                     else
-                        c=0;
-                    rezultat = rezultat + '"' + simptoma + '"' + ":" + '"' + c + '"' + ",";
+                        c = 0;
+                    query = query + "\"" + sy + "\":" + "\"" + c + "\",";
                 }
-                rezultat = rezultat + '"' + "disease" + '"' + ":" + '"' + boala + '"' + ",";
-                rezultat = rezultat.substring(0, rezultat.length()-1);
-                rezultat = rezultat + "},";
-            }
-            rezultat = rezultat + "{";
-            for(String simptoma:lista_simptome){
-                if(boala_cu_simptomele_ei.get(boala).contains(simptoma))
-                    c=1;
-                else
-                    c=1;
-                rezultat = rezultat + '"' + simptoma + '"' + ":" + '"' + c + '"' + ",";
-            }
-            rezultat = rezultat + '"' + "disease" + '"' + ":" + '"' + boala + '"' + ",";
-            rezultat = rezultat.substring(0, rezultat.length()-1);
-            rezultat = rezultat + "},";
-        }
-        rezultat=rezultat.substring(0,rezultat.length()-1);
-        rezultat = rezultat + "]";
+                query = query + "\"disease\":" + "\"" + disease + "\",";
+                query = query.substring(0, query.length() - 1);
+                query = query + "},";
 
-        return rezultat;
+                rezultat.add(query);
+            }
+            String query = "{";
+            for(String sy : symptoms)
+            {
+                int c;
+                if(dataSets.get(disease).contains(sy))
+                    c = 1;
+                else
+                    c = 0;
+                query = query + "\"" + sy + "\":" + "\"" + c + "\",";
+
+            }
+            query = query + "\"disease\":" + "\"" + disease + "\",";
+            query = query.substring(0, query.length() - 1);
+            query = query + "},";
+            rezultat.add(query);
+        }
+        String first = "[" + rezultat.get(0);
+        rezultat.set(0,first);
+
+        String last = rezultat.get(rezultat.size() - 1).substring(0, rezultat.get(rezultat.size() - 1).length() - 1) + "]";
+        rezultat.remove(rezultat.size() - 1);
+        rezultat.add(last);
+
+        for(String str : rezultat)
+            System.out.println(rezultat.indexOf(str) + " -> " + str);
+
+        File file4 = new File("src/com/company/output.txt");
+        RandomAccessFile stream = new RandomAccessFile(file4, "rw");
+        FileChannel channel = stream.getChannel();
+
+        for(String str : rezultat)
+        {
+            str = str + "\n";
+            byte[] strBytes = str.getBytes();
+            ByteBuffer buffer = ByteBuffer.allocate(strBytes.length);
+            buffer.put(strBytes);
+            buffer.flip();
+            channel.write(buffer);
+        }
+
+        stream.close();
+        channel.close();
+
+
+        System.out.println("GATA !!!!!");
+
+        return new Gson().toJson(rezultat);
     }
 
 }
