@@ -1,6 +1,7 @@
 package boot.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -12,8 +13,8 @@ public class HistoryUser { //DE VERIFICAT/COMPLETAT
     @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "UserID")
-    private Integer userid;
+    @Column(name = "Username")
+    private String username;
 
     @Column(name = "Diseases")
     private String diseases;
@@ -22,18 +23,18 @@ public class HistoryUser { //DE VERIFICAT/COMPLETAT
     private String symptoms;
 
     @Column(name = "Date")
-    private Date date;
+    private LocalDateTime date;
 
     public Integer getId() {
         return id;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUsername(String userid) {
+        this.username = userid;
     }
 
     public String getDiseases() {
@@ -52,11 +53,11 @@ public class HistoryUser { //DE VERIFICAT/COMPLETAT
         this.symptoms = symptoms;
     }
 
-    public Date getDate() {
+    public LocalDateTime  getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime  date) {
         this.date = date;
     }
 }

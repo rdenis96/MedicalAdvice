@@ -157,6 +157,22 @@ function modificare(){
 
 }
 
+function updatare(){
+
+    $.ajax({
+        type: "GET",
+        url: "reloadDataFile",
+        data: {
+        }
+    }).done(function(result) {
+        if(result==1){
+            window.location = "../admin/panel";
+        }
+    }).fail(function () {
+        alert("Error!")
+    });
+}
+
 
 function logOut(){
     sessionStorage.removeItem("myUsername");

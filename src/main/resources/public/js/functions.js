@@ -79,19 +79,21 @@ function timerupdate() {
             alert(diseaseList3);
             diseaseList3 = [];
 
-
             //afis graf
             drawGraph(testModel,'canvas');
 
-            //fct care ret checkboxes
-            document.getElementById("countdown").innerText = "/";
+            //retine cautarea
             $.ajax({
-                type: "POST",
-                url: "/selectedCheckboxes",
+                type: "GET",
+                url: "updateHistory",
                 data: {
-                    selCheck : array_check
+                    username: sessionStorage.getItem("myUsername"),
+                    diseases: diseaseList3,
+                    symptoms: array_check
                 }
             });
+
+            document.getElementById("countdown").innerText = "/";
         }
     }, 1000);
 }

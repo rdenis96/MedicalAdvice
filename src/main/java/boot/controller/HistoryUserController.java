@@ -26,7 +26,7 @@ public class HistoryUserController {
 
     @RequestMapping(value = "getHistoryList", method = RequestMethod.GET, produces = "application/json")
     public String getHistoryList(){
-        List<HistoryUser> symptoms = historyUserService.getByUserid(1);
+        List<HistoryUser> symptoms = historyUserService.getByUsername("admin");
 
         //System.out.println("TESTU MEU ");
         System.out.println(new Gson().toJson(symptoms));

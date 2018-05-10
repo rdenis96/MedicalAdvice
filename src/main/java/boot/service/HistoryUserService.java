@@ -8,7 +8,7 @@ public interface HistoryUserService {
 
     public HistoryUser getById(Integer id);
 
-    public List<HistoryUser> getByUserid(Integer id);
+    public List<HistoryUser> getByUsername(String username);
 
     public List<HistoryUser> getAll();
 

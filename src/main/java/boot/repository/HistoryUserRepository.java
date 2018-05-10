@@ -11,6 +11,6 @@ public interface HistoryUserRepository extends JpaRepository<HistoryUser,Integer
 
     public HistoryUser getById(Integer id);
 
-    public List<HistoryUser> getByUserid(Integer id);
+    public List<HistoryUser> getByUsername(String username);
 
 }

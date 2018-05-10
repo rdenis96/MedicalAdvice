@@ -62,4 +62,15 @@ public class AdminPanelController {
             return -1;
     }
 
+    @RequestMapping(value="reloadDataFile", method = RequestMethod.GET)
+    @ResponseBody
+    public int reloadDataFile(){
+
+        //CODUL CARE GENEREAZA CHESTIAAAAAAA
+
+        return 1;
+
+    }
+
+
 }
