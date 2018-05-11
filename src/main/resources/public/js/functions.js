@@ -1,5 +1,44 @@
 
+window.onload = function(ev){
+    if("myUsername" in sessionStorage === false)
+        window.location.href = "/";
+    console.log(sessionStorage.getItem("myUsername"));
+
+    var username=sessionStorage.getItem("myUsername");
+
+    $.ajax({
+        type: "POST",
+        url: "checkAdmin",
+        data: {
+            username: username
+        },
+        dataType: "json"
+    }).done(function(result) {
+        if(result==2){
+
+            var btn = document.createElement('button');
+            var lbl = document.createElement('label');
+
+            lbl.innerHTML="Admin panel";
+            btn.setAttribute('onclick','to_admin()');
+            btn.setAttribute('id', 'btnAdmin');
+
+            btn.appendChild(lbl);
+            document.getElementById('holder').appendChild(btn);
+
+        }
+    }).fail(function () {
+        alert("Error!")
+    });
+
+};
+
+function to_admin(){
+    window.location = "../admin/panel";
+}
+
 var xMLHttpRequest = new XMLHttpRequest();
+
 xMLHttpRequest.open("GET","getSymptomsList",true);
 xMLHttpRequest.onreadystatechange = loadData;
 xMLHttpRequest.send();
@@ -8,7 +47,6 @@ var count;
 var timer;
 
 var array_check=[];
-
 
 
 function fct(){
@@ -21,24 +59,45 @@ function fct(){
 }
 
 function timerupdate() {
-    count = 5;
+    count = 3;
     timer = setInterval(function () {
         document.getElementById("countdown").innerText = count;
         count--;
         if (count < 0) {
             clearInterval(timer);
-            fct();
-            document.getElementById("countdown").innerText = "/";
+
+            fct(); //ia alea bifate
+
+            //pornesc diplay-ul pt grafic si rezultat
+            document.getElementById("instructiuni").setAttribute('style', 'display: none');
+            document.getElementById("result").setAttribute('style', 'display: inline-block');
+
+            //ml alg
+            var testModel = id3(examples,'disease',array_check);
+
+            //toate bolile
+            alert(diseaseList3);
+            diseaseList3 = [];
+
+            //afis graf
+            drawGraph(testModel,'canvas');
+
+            //retine cautarea
             $.ajax({
-                type: "POST",
-                url: "/selectedCheckboxes",
+                type: "GET",
+                url: "updateHistory",
                 data: {
-                    selCheck : array_check
+                    username: sessionStorage.getItem("myUsername"),
+                    diseases: diseaseList3,
+                    symptoms: array_check
                 }
             });
+
+            document.getElementById("countdown").innerText = "/";
         }
     }, 1000);
 }
+
 
 function afiseaza_lista(){
 
@@ -75,6 +134,7 @@ function aduna() {
 
 }
 
+
 function loadData() {
 
     if(xMLHttpRequest.readyState==4 && xMLHttpRequest.status==200){
@@ -84,16 +144,18 @@ function loadData() {
 
         for (var i=0;i<JSONList.length;i++){
 
+            var symptom = JSONList[i];
+
             var divSimpt = document.createElement('div');
             var inpSimpt = document.createElement('input');
             var labSimpt = document.createElement('label');
 
             inpSimpt.setAttribute('type','checkbox');
             inpSimpt.setAttribute('onchange','aduna()');
-            inpSimpt.setAttribute('value',JSONList[i].name);
+            inpSimpt.setAttribute('value',symptom);
             inpSimpt.setAttribute('name',"chackbox_name");
 
-            labSimpt.innerHTML = JSONList[i].name;
+            labSimpt.innerHTML = symptom;
 
             divSimpt.appendChild(inpSimpt);
             divSimpt.appendChild(labSimpt);
@@ -102,6 +164,26 @@ function loadData() {
 
         }
 
+    }
+
+}
+
+
+function logOut(){
+    sessionStorage.removeItem("myUsername");
+    window.location.href = "/";
+}
+
+function to_account(){
+    window.location = "../user/history";
+}
+
+function reset_array_check() {
+
+    var r = confirm("Confirmati resetarea cautarii");
+    if (r == true) {
+        array_check=[];
+        window.location = "../home/index";
     }
 
 }
