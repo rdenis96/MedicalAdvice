@@ -12,4 +12,6 @@ public interface HistoryUserService {
 
     public List<HistoryUser> getAll();
 
+    public boolean Add(HistoryUser historyUser);
+
 }

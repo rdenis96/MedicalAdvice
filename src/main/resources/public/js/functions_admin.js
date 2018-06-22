@@ -2,6 +2,7 @@
 window.onload = function(ev){
     if("myUsername" in sessionStorage === false)
         window.location.href = "/";
+    document.getElementById("progres").setAttribute('style', 'display: none');
     console.log(sessionStorage.getItem("myUsername"));
 };
 
@@ -158,6 +159,10 @@ function modificare(){
 }
 
 function updatare(){
+
+
+    document.getElementById("progres").setAttribute('style', 'display: inline-block');
+
 
     $.ajax({
         type: "GET",

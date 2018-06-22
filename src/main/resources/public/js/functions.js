@@ -60,7 +60,7 @@ function fct(){
 }
 
 function timerupdate() {
-    count = 3;
+    count = 5;
     timer = setInterval(function () {
         document.getElementById("countdown").innerText = count;
         count--;
@@ -83,7 +83,6 @@ function timerupdate() {
             }
             for(var boala in disease31)
             {
-                alert(boala + " ---- " + disease31[boala])
                 var elemLi = document.createElement("li");
                 var textLi = document.createTextNode(disease31[boala]);
                 elemLi.appendChild(textLi);
@@ -116,6 +115,17 @@ function timerupdate() {
             }
 
 
+            $.ajax({
+                type: "POST",
+                url: "updateHistory",
+                data: {
+                    username: sessionStorage.getItem("myUsername"),
+                    diseases: diseaseList3,
+                    symptoms: array_check
+                },
+                dataType: "json"
+            });
+
             //toate bolile
             diseaseList3 = [];
             disease31 = [];
@@ -123,16 +133,6 @@ function timerupdate() {
             //afis graf
             drawGraph(testModel,'canvas');
 
-            //retine cautarea
-            $.ajax({
-                type: "GET",
-                url: "updateHistory",
-                data: {
-                    username: sessionStorage.getItem("myUsername"),
-                    diseases: diseaseList3,
-                    symptoms: array_check
-                }
-            });
 
             document.getElementById("countdown").innerText = "/";
 

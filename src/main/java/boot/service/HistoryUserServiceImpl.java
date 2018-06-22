@@ -27,4 +27,16 @@ public class HistoryUserServiceImpl implements HistoryUserService {
     public List<HistoryUser> getAll() {
         return historyUserRepository.findAll();
     }
+
+    @Override
+    public boolean Add(HistoryUser historyUser) {
+        try {
+            historyUserRepository.saveAndFlush(historyUser);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
 }

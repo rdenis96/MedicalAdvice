@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.io.File;
@@ -21,10 +22,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("home")
@@ -70,10 +68,28 @@ public class HomeController {
     }
 
     @RequestMapping(value = "updateHistory")
-    public void getSelectedCheckboxes(@RequestParam("username") String username, @RequestParam("diseases") List<String> diseases, @RequestParam("symptoms") List<String> symptoms) {
+    public void getSelectedCheckboxes(@RequestParam("username") String username, @RequestParam("diseases[]") List<String> diseases, @RequestParam("symptoms[]") List<String> symptoms) {
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime data_curenta = LocalDateTime.now();
+        Date dt = Calendar.getInstance().getTime();
+
+        HistoryUser history = new HistoryUser();
+        history.setDate(dt);
+
+        String diseasesString = "";
+        for(String str : diseases)
+            diseasesString = diseasesString + str + ", ";
+        System.out.println("BOLILELE BA: " + diseasesString);
+        history.setDiseases(diseasesString);
+
+        String symptomsString = "";
+        for(String str : symptoms)
+            symptomsString = symptomsString + str + ", ";
+        System.out.println("SIMPTOMELE BA: " + symptomsString);
+        history.setSymptoms(symptomsString);
+
+        history.setUsername(username);
+
+        historyUser.Add(history);
 
         //CEVA PT ADD
     }

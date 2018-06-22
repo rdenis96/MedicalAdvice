@@ -23,7 +23,7 @@ public class HistoryUser { //DE VERIFICAT/COMPLETAT
     private String symptoms;
 
     @Column(name = "Date")
-    private LocalDateTime date;
+    private Date date;
 
     public Integer getId() {
         return id;
@@ -53,11 +53,11 @@ public class HistoryUser { //DE VERIFICAT/COMPLETAT
         this.symptoms = symptoms;
     }
 
-    public LocalDateTime  getDate() {
+    public Date  getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime  date) {
+    public void setDate(Date  date) {
         this.date = date;
     }
 }

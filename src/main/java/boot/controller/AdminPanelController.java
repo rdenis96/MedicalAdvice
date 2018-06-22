@@ -74,7 +74,7 @@ public class AdminPanelController {
 
     @RequestMapping(value="reloadDataFile", method = RequestMethod.GET)
     @ResponseBody
-    public void reloadDataFile() throws IOException {
+    public int reloadDataFile() throws IOException {
 
         List<String> diseasesList = diseaseSymptomService.getAllDiseases();
         List<String> symptomsList = diseaseSymptomService.getAllSymptoms();
@@ -141,8 +141,8 @@ public class AdminPanelController {
         rezultat.remove(rezultat.size() - 1);
         rezultat.add(last);
 
-        for(String str : rezultat)
-            System.out.println(rezultat.indexOf(str) + " -> " + str);
+//        for(String str : rezultat)
+//            System.out.println(rezultat.indexOf(str) + " -> " + str);
 
 
 
@@ -162,6 +162,8 @@ public class AdminPanelController {
 
         stream.close();
         channel.close();
+
+        return 1;
     }
 
 
