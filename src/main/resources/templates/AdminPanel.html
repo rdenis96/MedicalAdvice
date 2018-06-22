@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/style_admin.css">
+    <script src="../js/functions_admin.js"></script>
+    <title>Medical Advice</title>
+</head>
+
+<body>
+<header>
+    Medical Advice
+</header>
+
+<aside>
+
+    <button id="go_home" onclick="goHome()">Go home</button>
+
+    <button id="logout_button" onclick="logOut()">Log out</button>
+
+</aside>
+
+
+<div id="content">
+    <div id="content_holder">
+
+
+        <h1>Adaugare/stergere simptome</h1>
+        <input id="boala" type="text" name="boala" placeholder="Boala" oninput="cauta_boala()" onclick="afiseaza_ddlb()" autocomplete="off">
+        <div id="lista_boli" style="display: none">
+
+        </div>
+
+        <input id="simptoma" type="text" name="simptoma" placeholder ="Simptoma corespunzatoare" oninput="cauta_simptoma()" onclick="afiseaza_ddls()" autocomplete="off">
+        <div id="lista_simptome" style="display: none">
+
+        </div>
+
+        <button id="modificare" onclick="modificare()">Modify</button>
+        <button id="updateare" onclick="updatare()">Reload data file</button>
+
+        <p style="display: none;" id="progres"> In progress...</p>
+
+    </div>
+</div>
+
+</body>
+</html>

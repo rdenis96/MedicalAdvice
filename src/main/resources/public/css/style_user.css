@@ -1,0 +1,108 @@
+body{
+    background-image: url("https://i.imgur.com/q9IScRe.jpg");
+}
+
+header{
+    background-color: #333;
+    z-index: 2;
+    height: 60px;
+
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    padding: 10px;
+    text-align: center;
+    font-size: 3.5em;
+    font-weight: bold;
+    color: lightblue;
+}
+
+
+aside{
+    float: left;
+    position: fixed;
+    margin-top: 75px;
+    width: 250px;
+}
+
+#go_home{
+    background: rgba(51, 51, 51, 0.9);
+    color: lightblue;
+    border: none;
+    cursor: pointer;
+    margin-top:10px;
+
+    height:40px;
+    width: 180px;
+    font-size:1.2em;
+}
+
+#logout_button{
+    background: rgba(255, 137, 144, 0.9);
+    border: none;
+    cursor: pointer;
+    margin-top:10px;
+
+    height:40px;
+    width: 180px;
+    font-size:1.2em;
+}
+
+
+#content{
+    z-index: -1;
+    background: rgba(255, 255, 255, 0.9);
+
+    position: absolute;
+    right: 10px;
+    top: 93px;
+    left: 200px;
+
+    word-wrap: break-word;
+    overflow-y: auto;
+}
+
+#content_holder{
+    padding: 10px 10px 10px 20px;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+    opacity: 0.9;
+}
+
+tr:nth-child(even) {
+    background: rgba(201, 220, 255, 0.7);
+}
+
+tr:nth-child(odd) {
+    background: rgba(144, 238, 144, 0.5);
+}
+
+td{
+    text-align: center;
+    height: 20px;
+    padding: 5px;
+    border: 1px solid black;
+    overflow-y: auto;
+}
+
+.data{
+    width: 10%;
+}
+
+.simptome{
+    width: 60%;
+}
+
+.boli{
+    width: 30%;
+}
+
+.descriere{
+    background: rgba(211, 211, 211, 1);
+    font-weight: bold;
+}

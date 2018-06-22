@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/style_startPage.css">
+    <script src="../js/functions_startPage.js"></script>
+    <title>Medical Advice</title>
+</head>
+<body>
+
+    <header>
+        Medical Advice
+    </header>
+
+    <aside>
+
+        <button id="buton_login" onclick="activate_logIn()">Log in</button>
+
+        <button id="buton_signup" onclick="activate_signUp()">Sign up</button>
+
+    </aside>
+
+
+    <div id="content">
+
+        <div id="introducere">
+            <h1>Bine ati venit!</h1>
+            <p>Medical advice este un site facut pentru a ajuta oamenii care speculeaza ca sunt bolnavi sa-si
+                identifice boala pe baza simptoelor pe care le manifesta.</p>
+            <p>Pentru a avea acces la aplicatie <span style="font-weight: bold">va rugam sa va logati</span>
+                sau, daca nu aveti, sa va faceti un cont.</p>
+        </div>
+
+        <div id="login_input">
+            <!--<form method="post" action="#">-->
+                <h1>Log in</h1>
+                <input id="username_login" type="text" name="username" placeholder="Username" required><br>
+                <input id="password_login" type="password" name="password" placeholder ="Password" required><br>
+                <button id="login" onclick="logIn()">Login</button><br>
+            <!--</form>-->
+        </div>
+
+        <div id="signup_input">
+            <!--<form method="post" action="#">-->
+            <h1>Sign up</h1>
+                <input id="username_signup" type="text" name="username" placeholder="Username" required><br>
+                <input id="password_signup" type="password" name="password" placeholder ="Password" required><br>
+                <input id="email_signup" type="email" name="email" placeholder="Email" required ><br>
+            <button id="signup" onclick="signUp()">Signup</button><br>
+            <!--</form>-->
+        </div>
+
+    </div>
+
+</body>
+</html>

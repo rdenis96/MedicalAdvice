@@ -1,5 +1,6 @@
 package boot.config;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.flyway.FlywayDataSource;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -25,23 +27,24 @@ public class PersistenceConfiguration extends WebMvcConfigurerAdapter {
     public ViewResolver getViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setPrefix("templates/");
-        //resolver.setSuffix(".html");
+        resolver.setSuffix(".html");
         return resolver;
     }
 
-//    @Bean
-//    @ConfigurationProperties(prefix="spring.datasource")
-//    @Primary
-//    public DataSource dataSource(){
-//        return DataSourceBuilder.create().build();
-//    }
-//
-//    @Bean
-//    @ConfigurationProperties(prefix="datasource.flyway")
-//    @FlywayDataSource
-//    public DataSource flywayDataSource(){
-//        return DataSourceBuilder.create().build();
-//    }
+    @Bean
+    @ConfigurationProperties(prefix="spring.datasource")
+    @Primary
+    public DataSource dataSource(){
+        return DataSourceBuilder.create().build();
+    }
+
+    @Bean
+    @ConfigurationProperties(prefix="datasource.flyway")
+    @FlywayDataSource
+    public DataSource flywayDataSource(){
+        return DataSourceBuilder.create().build();
+    }
+
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer)
